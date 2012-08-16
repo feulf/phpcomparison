@@ -1,0 +1,1 @@
+The charts library is part of the <a href="http://www.rainframework.com">RainFramework</a>!

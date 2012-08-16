@@ -1,0 +1,32 @@
+
+html,body{font-family:"Lucida Grande", "Lucida Sans", Helvetica;font-size:13px;color:#444;}
+a:link, a:visited, a:active{color:#333;}
+a:hover{color:#ff0000;}
+img{border:0px;}
+h1{color:#339933;font-family:Georgia, Times;font-size:28px;margin:0px;font-weight:normal;margin-bottom:5px;text-align:center;}
+h2{color:#336699;font-family:Georgia, Times;font-size:20px;margin:0px;font-weight:normal;margin-bottom:5px;}
+h3{color:#999;font-weight:normal;font-size:13px;text-align:center;}
+
+.comment{color:#999;}
+.graph table{background:#ccc;width:700px;}
+.graph td{background:#fff;padding:8px;font-size:13px;}
+.graph .table_title{background:#eee;font-weight:bold;}
+
+form{margin:0px;}
+#selector{ background:#def; border:1px solid #cde;padding:20px;margin-bottom:50px;}
+#selector input[type=submit]{border:1px solid #ccc;background:#eee;color:#333;text-shadow:1px 1px 1px #fff; padding:5px 10px;cursor:pointer;}
+#selector input[type=submit]:hover{background:#cdf;color:#333;text-shadow:0px 0px 0px;border:1px solid #69c;}
+
+
+#wrapper{width:900px;text-align:left;margin:30px auto;}
+
+.graph{ text-align:left;margin-bottom:100px;}
+
+.graph_inner{ padding:10px;overflow:hidden; margin-bottom:50px}
+.graph h1{padding:10px;margin-bottom:1px;}
+
+#last_update{position:absolute;top:10px;left:10px;color:#999;font-size:11px}
+#social{font-size:11px;color:#999;float:left;margin-bottom:10px;}
+#social div{margin:5px;float: left;}
+#copyright{font-size:11px;color:#999;float:right;}
+#copyright a{font-size:11px;color:#999;float:right;}
