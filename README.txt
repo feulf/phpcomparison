@@ -1,6 +1,13 @@
+PHP Template Engine Comparison
+------------------------------
+speed matter ... sometimes ...
+
+This benchmark test the speed of few popular template engine, you can fork the project and contribute by adding your favorite template engine.
+
+
+
 How works the benchmark?
 -----------------------
-
 
 1.) Add your database login details to the "library/conf.db.php" file (make sure the user has permission to create tables).
 
