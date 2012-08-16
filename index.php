@@ -95,7 +95,7 @@
         The test is executed on compiled template. The charts shows the average execution time and memory consumed for each test. Have fun! <br/>
 
         <br/><br/>
-        <a href="http://www.phpcomparison.net/benchmark.zip">click here to download this benchmark</a>
+        This project is open source <a href="https://github.com/rainphp/phpcomparison" target="_blank">click here to download the benchmark!</a> and <a href="https://twitter.com/feulf" target="_blank">here follow me on Twitter</a>
 
 		</p>
 		<br/><br/>
@@ -168,7 +168,8 @@
 	</div>
 	
 	<div id="social"><a name="social"></a>
-		Share it if you like it!<br/><br/>
+            <a href="https://twitter.com/feulf" target="_blank">Follow me on Twitter</a>
+<br/><br/>
 	</div>
 	
 	<div id="copyright">
