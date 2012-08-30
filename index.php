@@ -51,12 +51,10 @@
 	$rows = $db->get_list( "SELECT template_engine, n, avg(execution_time) AS execution_time, avg(memory) AS memory FROM template_benchmark $where GROUP BY template_engine, n ORDER BY n, execution_time, template_engine" );
 	$template_show = $db->get_list( "SELECT template_engine, avg(execution_time) AS execution_time FROM template_benchmark $where GROUP BY template_engine ORDER BY n, execution_time, template_engine", "template_engine", "template_engine" );
 	$nrows = $db->get_list( "SELECT n FROM template_benchmark $where GROUP BY n" );
-
-
 ?>
-
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>PHP Template Engine Comparison</title>
 	<link href="graph/style.css" type="text/css" rel="stylesheet"/>
 	<script>
@@ -79,7 +77,7 @@
 	<div id="wrapper">
 
 		<h1>PHP Template Engine Comparison</h1>
-		<h3>speed matter ... sometimes ...</h3>
+		<h3>Speed matters... sometimes...</h3>
 		<br/>
 
         <div id="last_update">updated on <?php echo $last_update_date; ?> at <?php echo $last_update_time; ?></div>
@@ -152,7 +150,7 @@
 			</div>
 			<h2>Memory (<?php echo $test; ?>)</h2>
 			<div class="graph_inner">
-				<iframe id="graph2" src="graph/line.php?<?php echo $sel; ?>type=memory&test=<?php echo $test; ?>" width="100%" height="350" style="border:0px;"></iframe>
+				<iframe id="graph3" src="graph/line.php?<?php echo $sel; ?>type=memory&test=<?php echo $test; ?>" width="100%" height="350" style="border:0px;"></iframe>
 			</div>
 
 		</div>
@@ -167,7 +165,7 @@
   
 	</div>
 	
-	<div id="social"><a name="social"></a>
+	<div id="social">
             <a href="https://twitter.com/feulf" target="_blank">Follow me on Twitter</a>
 <br/><br/>
 	</div>
