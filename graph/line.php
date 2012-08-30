@@ -90,7 +90,7 @@
 			if( $type == 'memory' )
 				echo "Memory (KB)";
 			else
-				echo "Execution Time (µs)"
+				echo "Execution Time (&mu;s)"
 		?>
 		<div id="line_chart"></div>
 		
