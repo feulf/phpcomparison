@@ -31,7 +31,7 @@ $template_list_version = array(
 	'php' => phpversion(),
 	'raintpl' => '2.7.0',
     'dwoo' => '1.1.1',
-	'smarty' => '3.1.7',
+	'smarty' => '3.1.11',
 	'twig' => '1.5.1',
 );
 $template_list_package_size = array(
@@ -41,7 +41,7 @@ $template_list_package_size = array(
 	'php' => '4 KB',
 	'raintpl' => '37 KB',
     'dwoo' => '848 KB',
-	'smarty' => '971 KB',
+	'smarty' => '1100 KB',
 	'twig' => '647 KB',
 );
 
@@ -52,6 +52,6 @@ $template_website = array(
 	'php' => 'http://php.net',
 	'raintpl' => 'http://www.raintpl.com',
     'dwoo' => 'http://dwoo.org',
-	'smarty' => 'http://www.smarty.com',
+	'smarty' => 'http://www.smarty.net/',
 	'twig' => 'http://twig-project.org',
 );

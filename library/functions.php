@@ -13,7 +13,7 @@
 	}
 
 	function msec( $m ){
-		return round($m) . " µs";
+		return round($m) . " &mu;s";
 	}
 	
 	function format_memory( $size ){
@@ -62,11 +62,12 @@
 			`template_number` int(11) NOT NULL,
 			`test_number` int(11) NOT NULL,
 			`execution_number` int(11) NOT NULL,
+			`time` int(11) NOT NULL,
 			PRIMARY KEY (`test`,`template_number`,`test_number`,`execution_number`)
 		) ENGINE=MyISAM DEFAULT CHARSET=latin1;");
 		//clean up
-		$db->query("DELETE FROM template_benchmark");
-		$db->query("DELETE FROM template_test_counter");
+		$db->query("TRUNCATE TABLE template_benchmark");
+		$db->query("TRUNCATE TABLE template_test_counter");
 		$db->query("INSERT INTO template_test_counter VALUES ('assign',0,0,0,0)");
 		//session reset
 		$_SESSION['template_number'] = $_SESSION['test_number'] = $_SESSION['execution_number'] = 0;
