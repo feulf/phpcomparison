@@ -48,7 +48,7 @@ for($i = 0; $i < $n; $i++) {
 			'param3' => '<h1>hello world</h1>'
 		);
 	} else {
-		$myvar[] = '<b>blah!</b>';
+		$myvar["var$i"] = '<b>blah!</b>';
 	}
 }	
 
