@@ -22,6 +22,7 @@ $template_list = array(
 	'php',
 	'smarty',
 	'twig',
+    'phptal',
 );
 
 $template_list_version = array(
@@ -33,6 +34,7 @@ $template_list_version = array(
     'dwoo' => '1.1.1',
 	'smarty' => '3.1.11',
 	'twig' => '1.5.1',
+	'phptal' => '1.2.2',
 );
 $template_list_package_size = array(
 	'anetple' => '16 KB',
@@ -43,6 +45,7 @@ $template_list_package_size = array(
     'dwoo' => '848 KB',
 	'smarty' => '1100 KB',
 	'twig' => '647 KB',
+	'phptal' => '330 KB',
 );
 
 $template_website = array(
@@ -54,4 +57,5 @@ $template_website = array(
     'dwoo' => 'http://dwoo.org',
 	'smarty' => 'http://www.smarty.net/',
 	'twig' => 'http://twig-project.org',
+	'phptal' => 'http://http://phptal.org/',
 );
