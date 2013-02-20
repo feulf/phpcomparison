@@ -15,47 +15,53 @@ $n_values = array( 1, 10, 20, 50, 100 );
 // get the list of the templates
 $template_list = array(
 	//'anetple',
-    //'haanga',
-    //'savant',
-    //'dwoo',
-	'raintpl',
+	//'dwoo',
+	//'haanga',
 	'php',
+	'phptal',
+	'raintpl',
+	//'savant',
 	'smarty',
 	'twig',
-    'phptal',
+	'twig12',
 );
 
 $template_list_version = array(
 	'anetple' => '1.0',
-    'haanga' => '1.0.4',
-    'savant' => '3.0.1',
+	'haanga' => '1.0.4',
+	'dwoo' => '1.1.1',
 	'php' => phpversion(),
+	'phptal' => '1.2.2',
 	'raintpl' => '2.7.0',
-    'dwoo' => '1.1.1',
+	'savant' => '3.0.1',
 	'smarty' => '3.1.11',
 	'twig' => '1.5.1',
-	'phptal' => '1.2.2',
+	'twig12' => '1.12.2',
 );
+
 $template_list_package_size = array(
 	'anetple' => '16 KB',
-    'haanga' => '532 KB',
-    'savant' => '209 KB',
+	'dwoo' => '848 KB',
+	'haanga' => '532 KB',
 	'php' => '4 KB',
+	'phptal' => '330 KB',
 	'raintpl' => '37 KB',
-    'dwoo' => '848 KB',
+	'savant' => '209 KB',
 	'smarty' => '1100 KB',
 	'twig' => '647 KB',
-	'phptal' => '330 KB',
+	'twig12' => '2000 KB',
 );
 
 $template_website = array(
 	'anetple' => '',
-    'haanga' => 'http://haanga.org',
-    'savant' => 'http://phpsavant.com',
+	'dwoo' => 'http://dwoo.org',
+	'haanga' => 'http://haanga.org',
 	'php' => 'http://php.net',
+	'phptal' => 'http://www.phptal.org/',
 	'raintpl' => 'http://www.raintpl.com',
-    'dwoo' => 'http://dwoo.org',
+	'savant' => 'http://phpsavant.com',
 	'smarty' => 'http://www.smarty.net/',
 	'twig' => 'http://twig-project.org',
-	'phptal' => 'http://http://phptal.org/',
+	'twig12' => 'http://twig-project.org',
 );
+
