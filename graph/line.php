@@ -1,31 +1,45 @@
 <?php
 
-	require_once "../library/mysql.class.php";
+	require "../vendor/autoload.php";
 	require_once "../library/functions.php";
-        
-
-	$db = new mysql;
-	$db->connect() or die("db connection error");
+        use Rain\DB;
+        DB::configure('config_dir', dirname(__DIR__) .'/config/');
+        DB::init();
 
 	$test = get('test')=='loop'?'loop':'assign';
 	$type = get('type')=='memory'?'memory':'execution_time';
-	$template_tested = $db->get_list( "SELECT template_engine FROM template_benchmark WHERE test='$test' GROUP BY template_engine ORDER BY template_engine", "template_engine", "template_engine" );
+	$template_tested = DB::getAllArray("SELECT template_engine 
+                                       FROM template_benchmark 
+                                       WHERE test=:test
+                                       GROUP BY template_engine 
+                                       ORDER BY template_engine", 
+                                       array(':test'=>$test),
+                                       "template_engine", 
+                                       "template_engine" );
 
-	if( $template_selected = get( 'template' ) ){
-		$where = "WHERE test='$test' AND (";
-		$i=0;
-		foreach( $template_selected as $tpl => $on ){
-			$where .= $i==0?" template_engine='$tpl'":" OR template_engine='$tpl'";
-			$i=1;
-		}
-		$where .= ")";
-	}
-	else
-		$where = "WHERE test='$test'";
-
-	$rows = $db->get_list( "SELECT template_engine, n, avg(execution_time) AS execution_time, round(avg(memory)/1024) AS memory FROM template_benchmark $where GROUP BY template_engine, n ORDER BY n, template_engine" );
-	$template_show = $db->get_list( "SELECT template_engine, avg(execution_time) AS execution_time FROM template_benchmark $where GROUP BY template_engine ORDER BY n, template_engine", "template_engine", "template_engine" );
-	$nrows = $db->get_list( "SELECT n FROM template_benchmark $where GROUP BY n" );
+	$rows = DB::getAllArray( "SELECT template_engine, 
+                                         n, 
+                                         avg(execution_time) AS execution_time, 
+                                         round(avg(memory)/1024) AS memory 
+                                  FROM template_benchmark 
+                                  WHERE test=:test
+                                  GROUP BY template_engine, n 
+                                  ORDER BY n, template_engine",
+                                  array(':test'=>$test));
+	$template_show = DB::getAllArray( "SELECT template_engine, 
+                                             avg(execution_time) AS execution_time 
+                                           FROM template_benchmark 
+                                           WHERE test=:test
+                                           GROUP BY template_engine 
+                                           ORDER BY n, template_engine", 
+                                           array(":test"=>$test),
+                                           "template_engine", "template_engine" );
+	$nrows = DB::getAllArray("SELECT n 
+                                  FROM template_benchmark 
+                                  WHERE test=:test
+                                  GROUP BY n",
+                                  array(':test'=>$test)
+                                 );
 
 	$color = array('#3366cc','#dc3912','#ff9900','#109618','#990099','#0099c6','#dd4477' );
 	$nc = sizeof($color);

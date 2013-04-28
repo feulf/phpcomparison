@@ -1,0 +1,6 @@
+{
+    "require":
+    {
+        "rain/db" : "dev-master"
+    }
+}

@@ -12,11 +12,10 @@ error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 	
 require_once "library/functions.php";
-require_once "library/mysql.class.php";
-require_once "library/config.php";
+require "vendor/autoload.php";
 
-$db = new mysql;
-$db->connect() or die("db connection error");
+
+DB::init();
 
 //install / reset?
 if(isset($_GET['reset']) || !isset($_SESSION['working'])) {
@@ -26,7 +25,7 @@ if(isset($_GET['reset']) || !isset($_SESSION['working'])) {
 //no more installs!
 $_SESSION['working'] = 1;
 
-$vars = $db->get_row("SELECT * FROM template_test_counter");
+$vars = DB::getRow("SELECT * FROM template_test_counter");
 
 $test = $vars['test'];
 $template_number = $vars['template_number'];
@@ -73,7 +72,10 @@ $html = '<h1>Template speed test</h1>
 		memory used: <b>'.$mem.'</b>';
 
 //save to db
-$db->query("INSERT INTO template_benchmark (template_engine,test,n,execution_time,memory) VALUES('$template_engine', '$test','$n', '$exc', '$mem')");
+DB::query("INSERT INTO template_benchmark (template_engine,test,n,execution_time,memory) 
+                                   VALUES (:template_engine, :test, :n, :exc, :mem)",
+           array(':template_engine'=>$template_engine, ':test'=>$test, ':n'=>$test, ':exc'=>$exc, ':mem'=> $mem)
+         );
 
 //+1 cycle
 $execution_number++;
@@ -88,12 +90,30 @@ if($execution_number >= $n_test_for_template) {
 		if($test_number >= count($n_values)) {
 			if($test == 'assign') {
 				$template_number = $test_number = $execution_number = 0;
-				$db->query("UPDATE `template_test_counter` SET `test` = 'loop', `template_number` = '$template_number', `test_number` = '$test_number', `execution_number` = '$execution_number'");
+				DB::query("UPDATE template_test_counter 
+                                           SET test=:test, 
+                                               template_number=:template_number, 
+                                               test_number=:test_number,
+                                               execution_number=:execution_number",
+                                        array(':test'=>'loop', 
+                                               ':template_number'=> $template_number, 
+                                               ':test_number'=>$test_number,
+                                               ':execution_number'=>$execution_number,)
+                                        );
 				header("Refresh: 0.1; url=test.php");
 				exit;
 			}else{
 				header("Refresh: 0.1; url=save.php");
-				$db->query("UPDATE `template_test_counter` SET `test` = '$test', `template_number` = '$template_number', `test_number` = '$test_number', `execution_number` = '$execution_number'");
+				DB::query("UPDATE template_test_counter 
+                                           SET test=:test,
+                                               template_number=:template_number,
+                                               test_number=:test_number,
+                                               execution_number=:execution_number",
+                                        array(':test'=>$test, 
+                                              ':template_number'=>$template_number,
+                                              ':test_number'=>$test_number,
+                                              ':execution_number'=>$execution_number,
+                                            ));
 				$template_number = $test_number = $execution_number = 0;
 				unset($_SESSION['working']);
 				exit;
@@ -102,7 +122,17 @@ if($execution_number >= $n_test_for_template) {
 	}
 }
 	
-$db->query("UPDATE `template_test_counter` SET `test` = '$test', `template_number` = '$template_number', `test_number` = '$test_number', `execution_number` = '$execution_number', time=UNIX_TIMESTAMP()");
+DB::query("UPDATE template_test_counter 
+           SET test=:test,
+               template_number=:template_number,
+               test_number=:test_number,
+               execution_number=execution_number, 
+               time=UNIX_TIMESTAMP()",
+          array('test'=>$test,
+               'template_number'=>$template_number,
+               'test_number'=>$test_number,
+               'execution_number'=>$execution_number)
+        );
 
 header("Refresh: 0.1; url=test.php?test=$test");
 echo $html;

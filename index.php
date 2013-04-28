@@ -7,8 +7,8 @@
  *  Distributed under MIT license http://www.opensource.org/licenses/mit-license.php
  */
 
-
 	session_start();
+        require "vendor/autoload.php";
 	
 	if(isset($_SESSION['working'])) {
 		header("Refresh: 30; url=index.php");
@@ -16,41 +16,67 @@
 		exit();
 	}
 
-	require_once "library/mysql.class.php";
 	require_once "library/functions.php";
 	require_once "library/config.php";
 
-	$db = new mysql;
-	$db->connect() or die("db connection error");
+        use Rain\DB;
+        
+        DB::init();
 	
 	$test = get('test')=='loop'?'loop':'assign';
 	
-	$summary = $db->get_list( "SELECT template_engine AS name, avg(execution_time) AS execution_time, avg(memory) AS memory FROM template_benchmark WHERE test='$test' GROUP BY template_engine ORDER BY execution_time" );
+	$summary = DB::getAll("SELECT template_engine AS name, 
+                                      avg(execution_time) AS execution_time, 
+                                      avg(memory) AS memory 
+                               FROM template_benchmark 
+                               WHERE test=:test
+                               GROUP BY template_engine 
+                               ORDER BY execution_time",
+                               array(":test"=>$test)
+                             );
 
-    $last_update = $db->get_field( "time", "SELECT time FROM template_test_counter LIMIT 1" );
+    $last_update = DB::getField("SELECT time 
+                                 FROM template_test_counter 
+                                 LIMIT 1");
     $last_update_date = date( "M d Y", $last_update );
     $last_update_time = date( "h:i A", $last_update );
 
-	$db = new mysql;
-	$db->connect() or die("db connection error");
-	$template_tested = (array) $db->get_list( "SELECT template_engine FROM template_benchmark WHERE test='$test' GROUP BY template_engine ORDER BY template_engine", "template_engine", "template_engine" );
+    
+    
+    $template_tested = DB::getAll("SELECT template_engine 
+                                   FROM template_benchmark 
+                                   WHERE test=:test 
+                                   GROUP BY template_engine 
+                                   ORDER BY template_engine", 
+                                   array(":test"=>$test),
+                                   "template_engine", 
+                                   "template_engine" );
 
-	if( $template_selected = get( 'template' ) ){
-		$where = "WHERE test='$test' AND (";
-		$i=0;
-		foreach( $template_selected as $tpl => $on ){
-			$where .= $i==0?" template_engine='$tpl'":" OR template_engine='$tpl'";
-			$i=1;
-		}
-		$where .= ")";
-	}
-	else
-		$where = "WHERE test='$test'";
-		
-
-	$rows = $db->get_list( "SELECT template_engine, n, avg(execution_time) AS execution_time, avg(memory) AS memory FROM template_benchmark $where GROUP BY template_engine, n ORDER BY n, execution_time, template_engine" );
-	$template_show = $db->get_list( "SELECT template_engine, avg(execution_time) AS execution_time FROM template_benchmark $where GROUP BY template_engine ORDER BY n, execution_time, template_engine", "template_engine", "template_engine" );
-	$nrows = $db->get_list( "SELECT n FROM template_benchmark $where GROUP BY n" );
+    
+	$rows = DB::getAllArray( 'SELECT template_engine, 
+                                    n, 
+                                    avg(execution_time) AS execution_time, 
+                                    avg(memory) AS memory 
+                             FROM template_benchmark 
+                             WHERE test=:test
+                             GROUP BY template_engine, n 
+                             ORDER BY n, execution_time, template_engine',
+                             array(":test"=>$test) 
+                          );
+	$template_show = DB::getAllArray("SELECT template_engine, 
+                                            avg(execution_time) AS execution_time 
+                                     FROM template_benchmark 
+                                     WHERE test=:test
+                                     GROUP BY template_engine 
+                                     ORDER BY n, execution_time, template_engine", 
+                                     array(':test'=>$test),
+                                     "template_engine",
+                                     "template_engine");
+	$nrows = DB::getAllArray( "SELECT n 
+                              FROM template_benchmark 
+                              WHERE test=:test
+                              GROUP BY n",
+                              array(':test'=>$test));
 ?>
 <html>
 <head>
@@ -100,6 +126,7 @@
 		  <div id="selector">
 		  	<form action="index.php">
 		      <?php
+                      
 		      	$sel = "";
 		    	foreach( $template_tested as $template ){
 		    		if( isset($template_show[ $template ] ))
