@@ -100,6 +100,20 @@
 </head>
 <body>
 
+    <div id="header">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7450782533421767";
+        /* PHP header */
+        google_ad_slot = "6883406703";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
+
 	<div id="wrapper">
 
 		<h1>PHP Template Engine Comparison</h1>
@@ -191,7 +205,6 @@
 		</div>
   
 	</div>
-	
 	<div id="social">
             <a href="https://twitter.com/feulf" target="_blank">Follow me on Twitter</a>
 <br/><br/>
@@ -200,8 +213,18 @@
 	<div id="copyright">
 		<a href="http://www.federicoulfo.it">Federico Ulfo</a>
 	</div>
-	
-	
+
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7450782533421767";
+        /* PHP Comparison */
+        google_ad_slot = "8302242302";
+        google_ad_width = 468;
+        google_ad_height = 15;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>	
 	
 </body>
 </html>

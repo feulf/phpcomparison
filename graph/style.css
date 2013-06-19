@@ -1,5 +1,5 @@
 
-html,body{font-family:"Lucida Grande", "Lucida Sans", Helvetica;font-size:13px;color:#444;}
+html,body{font-family:"Lucida Grande", "Lucida Sans", Helvetica;font-size:13px;color:#444;margin:0;}
 a:link, a:visited, a:active{color:#333;}
 a:hover{color:#ff0000;}
 img{border:0px;}
@@ -18,6 +18,7 @@ form{margin:0px;}
 #selector input[type=submit]:hover{background:#cdf;color:#333;text-shadow:0px 0px 0px;border:1px solid #69c;}
 
 
+#header{height:90px;}
 #wrapper{width:900px;text-align:left;margin:30px auto;}
 
 .graph{ text-align:left;margin-bottom:100px;}
