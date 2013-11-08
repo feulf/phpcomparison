@@ -5,7 +5,7 @@ This benchmark tests the speed and memory consumption of PHP template engines. Y
 
 ##How to run the benchmark
 
-1. Add your database login details to the `library/conf.db.php` file (make sure the user has permission to create tables).
+1. Add your database login details to the `config/db.php` file (make sure the user has permission to create tables).
 2. Run the `test.php` from your browser. Once it's completed, the results will be saved as CSV files in the `csv` folder.
 3. To draw the results you need the Charts class, which is not released open source with this package.
 4. View and compare results by visiting `index.php`.
